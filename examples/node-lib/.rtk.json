@@ -1,0 +1,20 @@
+{
+  "releaseScheme": "rtk",
+  "versionScheme": "semver",
+  "scmScheme": "git",
+  "tagFormat": "v{version}",
+  "changelogFormat": "keep-a-changelog#all-grouped",
+  "resources": [
+    {
+      "path": "package.json",
+      "type": "json",
+      "params": {
+        "property": "version"
+      }
+    },
+    {
+      "path": "CHANGELOG.md",
+      "type": "keep-a-changelog"
+    }
+  ]
+}

@@ -1,0 +1,18 @@
+- params:
+    nodecli: ../../../../../bin/nodecli.js
+    base: ../../../../..
+
+- description: Command help should display help information
+  command: 'nodecli --help'
+  exitcode: 0
+  output: 'Usage: nodecli'
+
+- description: Display command with lower transformation and no reverse
+  command: 'nodecli --config-file {base}/examples/nodecli.yaml display --reverse false --transform lower'
+  exitcode: 0
+  output: 'Message:'
+
+- description: Display command with upper transformation and reverse
+  command: 'nodecli --config-file {base}/examples/nodecli.yaml display --reverse true --transform upper'
+  exitcode: 0
+  output: 'Message:'

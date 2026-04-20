@@ -1,0 +1,12 @@
+.bob/
+.bob.json
+.DS_Store
+.git*
+.nyc_output
+.rtk.json
+avatar.jpg
+coverage/
+suntory.yml
+stage/
+test/
+test-integration/

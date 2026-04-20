@@ -1,0 +1,21 @@
+{
+  "options": [
+    { "arg": "-c, --config-file <configFile>", "desc": "Configuration file" }
+  ],
+  "commands": {
+    "display": {
+      "desc": "Display message",
+      "args": [
+      ],
+      "options": [
+        { "arg": "-r, --reverse <reverse>", "desc": "When reverse is enabled, message text is written in reverse, default: false" },
+        { "arg": "-t, --transform <transform>", "desc": "Message text transformation type, can be lower or upper, default: lower" }
+      ],
+      "examples": [
+        "nodecli display",
+        "nodecli display --reverse true",
+        "nodecli display --reverse true --transform upper"
+      ]
+    }
+  }
+}

@@ -1,0 +1,38 @@
+{
+  "name": "nodelib",
+  "type": "module",
+  "description": "A sample Node library project",
+  "keywords": [],
+  "version": "0.9.0-pre.0",
+  "homepage": "https://github.com/pakkunbot/node-lib",
+  "author": "Pakkun <blah+pakkun@cliffano.com>",
+  "contributors": [
+    "All contributors (https://github.com/pakkunbot/node-lib/graphs/contributors)"
+  ],
+  "main": "./lib/nodelib.js",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/pakkunbot/node-lib.git"
+  },
+  "bugs": {
+    "url": "https://github.com/pakkunbot/node-lib/issues"
+  },
+  "directories": {
+    "lib": "./lib",
+    "test": "./test"
+  },
+  "dependencies": {
+    "bagofcli": "^2.5.0",
+    "yaml-js": "^0.3.1"
+  },
+  "devDependencies": {
+    "@sinonjs/referee": "^11.0.1",
+    "esmock": "^2.7.3",
+    "sinon": "^21.0.0"
+  },
+  "scripts": {},
+  "engines": {
+    "node": ">= 20.0.0"
+  },
+  "license": "MIT"
+}

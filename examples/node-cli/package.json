@@ -1,0 +1,43 @@
+{
+  "name": "nodecli",
+  "type": "module",
+  "description": "A sample Node CLI project",
+  "keywords": [],
+  "version": "0.9.0-pre.0",
+  "homepage": "https://github.com/pakkunbot/node-cli",
+  "author": "Pakkun <blah+pakkun@cliffano.com> (https://github.com/pakkunbot)",
+  "contributors": [
+    "All contributors (https://github.com/pakkunbot/node-cli/graphs/contributors)"
+  ],
+  "main": "./lib/nodecli",
+  "bin": {
+    "nodecli": "./bin/nodecli.js"
+  },
+  "preferGlobal": true,
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/pakkunbot/node-cli.git"
+  },
+  "bugs": {
+    "url": "https://github.com/pakkunbot/node-cli/issues"
+  },
+  "directories": {
+    "bin": "./bin",
+    "lib": "./lib",
+    "test": "./test"
+  },
+  "dependencies": {
+    "bagofcli": "^2.5.0",
+    "yaml-js": "^0.3.1"
+  },
+  "devDependencies": {
+    "@sinonjs/referee": "^11.0.1",
+    "esmock": "^2.7.3",
+    "sinon": "^21.0.0"
+  },
+  "scripts": {},
+  "engines": {
+    "node": ">= 20.0.0"
+  },
+  "license": "MIT"
+}

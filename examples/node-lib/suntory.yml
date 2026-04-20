@@ -1,0 +1,13 @@
+---
+package_name: nodelib
+author: Pakkun
+generator:
+  component: node-lib
+  inputs:
+    project_id: nodelib
+    project_name: NodeLib
+    project_desc: A sample Node library project
+    author_name: Pakkun
+    author_email: blah+pakkun@cliffano.com
+    github_id: pakkunbot
+    github_repo: node-lib

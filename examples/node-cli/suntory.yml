@@ -1,0 +1,13 @@
+---
+package_name: nodecli
+author: Pakkun
+generator:
+  component: node-cli
+  inputs:
+    project_id: nodecli
+    project_name: NodeCLI
+    project_desc: A sample Node CLI project
+    author_name: Pakkun
+    author_email: blah+pakkun@cliffano.com
+    github_id: pakkunbot
+    github_repo: node-cli
