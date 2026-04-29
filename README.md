@@ -1,7 +1,6 @@
-<img align="right" src="https://raw.github.com/cliffano/suntory/main/avatar.jpg" alt="Avatar"/>
+![Avatar](avatar.jpg)
 
 [![Build Status](https://github.com/cliffano/suntory/actions/workflows/ci-workflow.yaml/badge.svg)](https://github.com/cliffano/suntory/actions/workflows/ci-workflow.yaml)
-<br/>
 
 # Suntory
 
