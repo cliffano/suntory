@@ -33,8 +33,7 @@ Create Suntory configuration file called `suntory.yml` with contains the followi
 | generator.inputs.github_id | The GitHub user or organisation ID | `pakkunbot` |
 | generator.inputs.github_repo | The GitHub repository name | `suntoryexample` |
 
-Usage
------
+## Usage
 
 The following targets are available:
 

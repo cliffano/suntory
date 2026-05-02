@@ -1,4 +1,4 @@
-<img align="right" src="https://raw.github.com/pakkunbot/node-lib/main/avatar.jpg" alt="Avatar"/>
+![Avatar](avatar.jpg)
 
 [![Build Status](https://github.com/pakkunbot/node-lib/workflows/CI/badge.svg)](https://github.com/pakkunbot/node-lib/actions?query=workflow%3ACI)
 [![Dependencies Status](https://img.shields.io/librariesio/release/npm/nodelib)](https://libraries.io/npm/nodelib)
@@ -6,36 +6,37 @@
 [![Coverage Status](https://coveralls.io/repos/github/pakkunbot/node-lib/badge.svg?branch=main)](https://coveralls.io/r/pakkunbot/node-lib?branch=main)
 [![Security Status](https://snyk.io/test/github/pakkunbot/node-lib/badge.svg)](https://snyk.io/test/github/pakkunbot/node-lib)
 [![Published Version](https://img.shields.io/npm/v/nodelib.svg)](https://www.npmjs.com/package/nodelib)
-<br/>
 
-NodeLib
--------
+# NodeLib
 
 NodeLib is a A sample Node library project .
 
-Installation
-------------
+## Installation
 
-    npm install nodelib
+```sh
+npm install nodelib
+```
 
-Usage
------
+## Usage
 
 Create a configuration file, e.g. `nodelib.yaml`:
 
-    ---
-    text: Hello World
+```yaml
+---
+text: Hello World
+```
 
 Create nodelib object and run it:
 
-    import Display from 'nodelib';
+```js
+import Display from 'nodelib';
 
-    const display = new Display('nodelib.yaml');
-    const text = display.format(false, 'lower');
-    console.log(text);
+const display = new Display('nodelib.yaml');
+const text = display.format(false, 'lower');
+console.log(text);
+```
 
-Configuration
--------------
+## Configuration
 
 These are the configuration properties that you can use with `nodelib`.
 Some example configuration files are available on [examples](examples) folder.
@@ -44,8 +45,7 @@ Some example configuration files are available on [examples](examples) folder.
 |----------|------|-------------|---------|
 | `text` | String | The message text | Hello World |
 
-Colophon
---------
+## Colophon
 
 [Developer's Guide](https://pakkunbot.github.io/developers_guide.html#nodejs)
 
