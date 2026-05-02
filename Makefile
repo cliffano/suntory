@@ -8,7 +8,7 @@ ci: clean lint test
 
 clean:
 	for component in $(COMPONENTS); do \
-	  (cd examples/$$component/ && make -f ../src/$(MAKEFILE_NAME) clean); \
+	  (cd examples/$$component/ && make -f ../../src/$(MAKEFILE_NAME) clean && cd ../../); \
 	done
 
 deps-extra-apt:
@@ -22,8 +22,9 @@ lint:
 test:
 	for component in $(COMPONENTS); do \
 	  (cd examples/$$component/ && \
-	    make -f ../src/$(MAKEFILE_NAME) deps-extra-apt ci test-examples deps-upgrade update-dotfiles update-to-latest update-to-main && \
-	    make -f ../src/$(MAKEFILE_NAME) update-to-version $(TARGET_VERSION_VARIABLE)=1.0.0); \
+	    make -f ../../src/$(MAKEFILE_NAME) deps-extra-apt ci test-examples deps-upgrade update-dotfiles update-to-latest update-to-main && \
+	    make -f ../../src/$(MAKEFILE_NAME) update-to-version $(TARGET_VERSION_VARIABLE)=1.0.0 &&\
+		cd ../../); \
 	done
 
 release-major:
