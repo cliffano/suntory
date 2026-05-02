@@ -6,4 +6,5 @@ cd ../
 npm link .
 cd examples/
 
+npm link nodelib
 node _nodelib.js
