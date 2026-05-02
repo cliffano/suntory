@@ -8,7 +8,6 @@
  * It contains the message text.
  */
 class Message {
-
   /**
    * Initialize the Message object.
    *
@@ -31,7 +30,7 @@ class Message {
    * Reverse the message text.
    */
   reverse() {
-    this.text = this.text.split('').reverse().join('');
+    this.text = this.text.split("").reverse().join("");
   }
 
   /**
@@ -58,6 +57,4 @@ class Message {
   }
 }
 
-export {
-  Message as default
-};
+export { Message as default };
