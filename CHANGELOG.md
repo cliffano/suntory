@@ -6,6 +6,9 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## Unreleased
 
+### Added
+- Add update-dotfiles implementation
+
 ### Fixed
 - Fix dotfiles source config name
 - Fix generator used for project updates

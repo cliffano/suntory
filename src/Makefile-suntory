@@ -70,7 +70,25 @@ update-dotfiles: GENERATOR_INPUTS_AUTHOR_EMAIL = $(shell yq .generator.inputs.au
 update-dotfiles: GENERATOR_INPUTS_GITHUB_ID = $(shell yq .generator.inputs.github_id suntory.yml)
 update-dotfiles: GENERATOR_INPUTS_GITHUB_REPO = $(shell yq .generator.inputs.github_repo suntory.yml)
 update-dotfiles: stage
-	echo "TODO"
+	cd stage/ && \
+	  rm -rf generator-node/ && \
+	  git clone https://github.com/cliffano/generator-node && \
+	  cd generator-node && \
+	  make deps && \
+	  node_modules/.bin/plop $(GENERATOR_COMPONENT) -- \
+	    --project_id "$(GENERATOR_INPUTS_PROJECT_ID)" \
+		--project_name "$(GENERATOR_INPUTS_PROJECT_NAME)" \
+		--project_desc "$(GENERATOR_INPUTS_PROJECT_DESC)" \
+		--author_name "$(GENERATOR_INPUTS_AUTHOR_NAME)" \
+		--author_email "$(GENERATOR_INPUTS_AUTHOR_EMAIL)" \
+		--github_id "$(GENERATOR_INPUTS_GITHUB_ID)" \
+		--github_repo "$(GENERATOR_INPUTS_GITHUB_REPO)"
+	cd stage/generator-node/stage/$(GENERATOR_COMPONENT) && \
+	  cp -R .github/* ../../../../.github/ && \
+	  cp .bob.json ../../../../.bob.json && \
+	  cp .gitignore ../../../../.gitignore && \
+	  cp eslint.config.js ../../../../eslint.config.js && \
+	  cp .rtk.json ../../../../.rtk.json
 
 ################################################################
 # Formatting targets
