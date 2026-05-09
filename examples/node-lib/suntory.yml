@@ -9,5 +9,6 @@ generator:
     project_desc: A sample Node library project
     author_name: Pakkun
     author_email: blah+pakkun@cliffano.com
+    author_url: https://github.com/pakkunbot
     github_id: pakkunbot
     github_repo: node-lib
