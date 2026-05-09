@@ -9,10 +9,10 @@ SUNTORY_VERSION = 0.10.1-pre.0
 # package_name: somepackage
 # author: Some Author
 
-# PACKAGE_NAME is the name of the Python package
+# PACKAGE_NAME is the name of the node.js package
 PACKAGE_NAME=$(shell yq .package_name suntory.yml)
 
-# AUTHOR is the author of the Python package
+# AUTHOR is the author of the node.js package
 AUTHOR ?= $(shell yq .author suntory.yml)
 
 $(info ################################################################)
@@ -60,7 +60,7 @@ update-to-main:
 update-to-version:
 	curl https://raw.githubusercontent.com/cliffano/suntory/$(TARGET_SUNTORY_VERSION)/src/Makefile-suntory -o Makefile
 
-# Update dotfiles using the generator-python
+# Update dotfiles using the generator-node
 update-dotfiles: GENERATOR_COMPONENT = $(shell yq .generator.component suntory.yml)
 update-dotfiles: GENERATOR_INPUTS_PROJECT_ID = $(shell yq .generator.inputs.project_id suntory.yml)
 update-dotfiles: GENERATOR_INPUTS_PROJECT_NAME = $(shell yq .generator.inputs.project_name suntory.yml)

@@ -8,6 +8,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ### Fixed
 - Fix dotfiles source config name
+- Fix generator used for project updates
 
 ## 0.10.0 - 2026-05-09
 ### Added
