@@ -11,5 +11,6 @@ jobs:
       - uses: cliffano/command-docker-action@v1.4.0
         with:
           command: 'make deps-extra-apt ci'
-          image: cliffano/studio
+          # Pinned to 2.16.0 for now due to "readline was closed" error with node 24.x
+          image: cliffano/studio:2.16.0
           shell: bash
