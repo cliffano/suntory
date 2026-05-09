@@ -61,14 +61,14 @@ update-to-version:
 	curl https://raw.githubusercontent.com/cliffano/suntory/$(TARGET_SUNTORY_VERSION)/src/Makefile-suntory -o Makefile
 
 # Update dotfiles using the generator-python
-update-dotfiles: GENERATOR_COMPONENT = $(shell yq .generator.component piemaker.yml)
-update-dotfiles: GENERATOR_INPUTS_PROJECT_ID = $(shell yq .generator.inputs.project_id piemaker.yml)
-update-dotfiles: GENERATOR_INPUTS_PROJECT_NAME = $(shell yq .generator.inputs.project_name piemaker.yml)
-update-dotfiles: GENERATOR_INPUTS_PROJECT_DESC = $(shell yq .generator.inputs.project_desc piemaker.yml)
-update-dotfiles: GENERATOR_INPUTS_AUTHOR_NAME = $(shell yq .generator.inputs.author_name piemaker.yml)
-update-dotfiles: GENERATOR_INPUTS_AUTHOR_EMAIL = $(shell yq .generator.inputs.author_email piemaker.yml)
-update-dotfiles: GENERATOR_INPUTS_GITHUB_ID = $(shell yq .generator.inputs.github_id piemaker.yml)
-update-dotfiles: GENERATOR_INPUTS_GITHUB_REPO = $(shell yq .generator.inputs.github_repo piemaker.yml)
+update-dotfiles: GENERATOR_COMPONENT = $(shell yq .generator.component suntory.yml)
+update-dotfiles: GENERATOR_INPUTS_PROJECT_ID = $(shell yq .generator.inputs.project_id suntory.yml)
+update-dotfiles: GENERATOR_INPUTS_PROJECT_NAME = $(shell yq .generator.inputs.project_name suntory.yml)
+update-dotfiles: GENERATOR_INPUTS_PROJECT_DESC = $(shell yq .generator.inputs.project_desc suntory.yml)
+update-dotfiles: GENERATOR_INPUTS_AUTHOR_NAME = $(shell yq .generator.inputs.author_name suntory.yml)
+update-dotfiles: GENERATOR_INPUTS_AUTHOR_EMAIL = $(shell yq .generator.inputs.author_email suntory.yml)
+update-dotfiles: GENERATOR_INPUTS_GITHUB_ID = $(shell yq .generator.inputs.github_id suntory.yml)
+update-dotfiles: GENERATOR_INPUTS_GITHUB_REPO = $(shell yq .generator.inputs.github_repo suntory.yml)
 update-dotfiles: stage
 	echo "TODO"
 
