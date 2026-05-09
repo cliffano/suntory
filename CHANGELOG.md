@@ -6,6 +6,9 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## Unreleased
 
+### Fixed
+- Fix missing author_url in example Suntory config
+
 ## 0.11.0 - 2026-05-09
 ### Added
 - Add update-dotfiles implementation
