@@ -67,6 +67,7 @@ update-dotfiles: GENERATOR_INPUTS_PROJECT_NAME = $(shell yq .generator.inputs.pr
 update-dotfiles: GENERATOR_INPUTS_PROJECT_DESC = $(shell yq .generator.inputs.project_desc suntory.yml)
 update-dotfiles: GENERATOR_INPUTS_AUTHOR_NAME = $(shell yq .generator.inputs.author_name suntory.yml)
 update-dotfiles: GENERATOR_INPUTS_AUTHOR_EMAIL = $(shell yq .generator.inputs.author_email suntory.yml)
+update-dotfiles: GENERATOR_INPUTS_AUTHOR_URL = $(shell yq .generator.inputs.author_url suntory.yml)
 update-dotfiles: GENERATOR_INPUTS_GITHUB_ID = $(shell yq .generator.inputs.github_id suntory.yml)
 update-dotfiles: GENERATOR_INPUTS_GITHUB_REPO = $(shell yq .generator.inputs.github_repo suntory.yml)
 update-dotfiles: stage
@@ -81,6 +82,7 @@ update-dotfiles: stage
 		--project_desc "$(GENERATOR_INPUTS_PROJECT_DESC)" \
 		--author_name "$(GENERATOR_INPUTS_AUTHOR_NAME)" \
 		--author_email "$(GENERATOR_INPUTS_AUTHOR_EMAIL)" \
+		--author_url "$(GENERATOR_INPUTS_AUTHOR_URL)" \
 		--github_id "$(GENERATOR_INPUTS_GITHUB_ID)" \
 		--github_repo "$(GENERATOR_INPUTS_GITHUB_REPO)"
 	cd stage/generator-node/stage/$(GENERATOR_COMPONENT) && \
