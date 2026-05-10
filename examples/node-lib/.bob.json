@@ -1,7 +1,10 @@
 {
-  "build": "clean dep lint complexity test test-integration coverage doc",
+  "build": "clean dep style lint complexity test coverage test-integration doc",
   "lint": {
     "type": "eslint"
+  },
+  "style": {
+    "type": "prettier"
   },
   "complexity": {
     "type": "plato"
@@ -9,11 +12,11 @@
   "test": {
     "type": "mocha"
   },
-  "test-integration": {
-    "type": "mocha"
-  },
   "coverage": {
     "type": "c8"
+  },
+  "test-integration": {
+    "type": "cmdt"
   },
   "doc": {
     "type": "jsdoc"

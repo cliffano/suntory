@@ -1,4 +1,4 @@
-SUNTORY_VERSION = 0.10.0
+SUNTORY_VERSION = 0.11.1
 
 ################################################################
 # User configuration variables
@@ -9,10 +9,10 @@ SUNTORY_VERSION = 0.10.0
 # package_name: somepackage
 # author: Some Author
 
-# PACKAGE_NAME is the name of the Python package
+# PACKAGE_NAME is the name of the node.js package
 PACKAGE_NAME=$(shell yq .package_name suntory.yml)
 
-# AUTHOR is the author of the Python package
+# AUTHOR is the author of the node.js package
 AUTHOR ?= $(shell yq .author suntory.yml)
 
 $(info ################################################################)
@@ -60,17 +60,37 @@ update-to-main:
 update-to-version:
 	curl https://raw.githubusercontent.com/cliffano/suntory/$(TARGET_SUNTORY_VERSION)/src/Makefile-suntory -o Makefile
 
-# Update dotfiles using the generator-python
-update-dotfiles: GENERATOR_COMPONENT = $(shell yq .generator.component piemaker.yml)
-update-dotfiles: GENERATOR_INPUTS_PROJECT_ID = $(shell yq .generator.inputs.project_id piemaker.yml)
-update-dotfiles: GENERATOR_INPUTS_PROJECT_NAME = $(shell yq .generator.inputs.project_name piemaker.yml)
-update-dotfiles: GENERATOR_INPUTS_PROJECT_DESC = $(shell yq .generator.inputs.project_desc piemaker.yml)
-update-dotfiles: GENERATOR_INPUTS_AUTHOR_NAME = $(shell yq .generator.inputs.author_name piemaker.yml)
-update-dotfiles: GENERATOR_INPUTS_AUTHOR_EMAIL = $(shell yq .generator.inputs.author_email piemaker.yml)
-update-dotfiles: GENERATOR_INPUTS_GITHUB_ID = $(shell yq .generator.inputs.github_id piemaker.yml)
-update-dotfiles: GENERATOR_INPUTS_GITHUB_REPO = $(shell yq .generator.inputs.github_repo piemaker.yml)
+# Update dotfiles using the generator-node
+update-dotfiles: GENERATOR_COMPONENT = $(shell yq .generator.component suntory.yml)
+update-dotfiles: GENERATOR_INPUTS_PROJECT_ID = $(shell yq .generator.inputs.project_id suntory.yml)
+update-dotfiles: GENERATOR_INPUTS_PROJECT_NAME = $(shell yq .generator.inputs.project_name suntory.yml)
+update-dotfiles: GENERATOR_INPUTS_PROJECT_DESC = $(shell yq .generator.inputs.project_desc suntory.yml)
+update-dotfiles: GENERATOR_INPUTS_AUTHOR_NAME = $(shell yq .generator.inputs.author_name suntory.yml)
+update-dotfiles: GENERATOR_INPUTS_AUTHOR_EMAIL = $(shell yq .generator.inputs.author_email suntory.yml)
+update-dotfiles: GENERATOR_INPUTS_AUTHOR_URL = $(shell yq .generator.inputs.author_url suntory.yml)
+update-dotfiles: GENERATOR_INPUTS_GITHUB_ID = $(shell yq .generator.inputs.github_id suntory.yml)
+update-dotfiles: GENERATOR_INPUTS_GITHUB_REPO = $(shell yq .generator.inputs.github_repo suntory.yml)
 update-dotfiles: stage
-	echo "TODO"
+	cd stage/ && \
+	  rm -rf generator-node/ && \
+	  git clone https://github.com/cliffano/generator-node && \
+	  cd generator-node && \
+	  make deps && \
+	  node_modules/.bin/plop $(GENERATOR_COMPONENT) -- \
+	    --project_id "$(GENERATOR_INPUTS_PROJECT_ID)" \
+		--project_name "$(GENERATOR_INPUTS_PROJECT_NAME)" \
+		--project_desc "$(GENERATOR_INPUTS_PROJECT_DESC)" \
+		--author_name "$(GENERATOR_INPUTS_AUTHOR_NAME)" \
+		--author_email "$(GENERATOR_INPUTS_AUTHOR_EMAIL)" \
+		--author_url "$(GENERATOR_INPUTS_AUTHOR_URL)" \
+		--github_id "$(GENERATOR_INPUTS_GITHUB_ID)" \
+		--github_repo "$(GENERATOR_INPUTS_GITHUB_REPO)"
+	cd stage/generator-node/stage/$(GENERATOR_COMPONENT) && \
+	  cp -R .github/* ../../../../.github/ && \
+	  cp .bob.json ../../../../.bob.json && \
+	  cp .gitignore ../../../../.gitignore && \
+	  cp eslint.config.js ../../../../eslint.config.js && \
+	  cp .rtk.json ../../../../.rtk.json
 
 ################################################################
 # Formatting targets
