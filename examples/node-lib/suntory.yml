@@ -12,3 +12,4 @@ generator:
     author_url: https://github.com/pakkunbot
     github_id: pakkunbot
     github_repo: node-lib
+    github_token_prefix: STUDIO
