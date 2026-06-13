@@ -113,7 +113,7 @@ test:
 	MOCHA_OPTIONS="--timeout 5000" bob test
 
 test-integration:
-	bob test-integration
+	MOCHA_OPTIONS="--timeout 5000" bob test-integration
 
 test-examples:
 	mkdir -p stage/test-examples/
@@ -123,7 +123,7 @@ test-examples:
 	done
 
 coverage:
-	bob coverage
+	MOCHA_OPTIONS="--timeout 5000" bob coverage
 
 ################################################################
 # Release targets
