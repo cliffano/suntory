@@ -77,4 +77,5 @@ Build reports:
 * [Test coverage report](https://pakkunbot.github.io/nodecli/coverage/c8/index.html)
 * [Integration tests report](https://pakkunbot.github.io/nodecli/test-integration/cmdt.txt)
 * [API Documentation](https://pakkunbot.github.io/nodecli/doc/jsdoc/index.html)
+
 <!-- END:BUILD_REPORTS -->
