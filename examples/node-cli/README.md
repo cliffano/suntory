@@ -1,9 +1,14 @@
 <!-- BEGIN:AVATAR -->
-To be populated by generator-node node-cli-partials
+![Avatar](avatar.jpg)
 <!-- END:AVATAR -->
 
 <!-- BEGIN:BADGES -->
-To be populated by generator-node node-cli-partials
+[![Build Status](https://github.com/pakkunbot/node-cli/workflows/CI/badge.svg)](https://github.com/pakkunbot/node-cli/actions?query=workflow%3ACI)
+[![Dependencies Status](https://img.shields.io/librariesio/release/npm/nodecli)](https://libraries.io/npm/nodecli)
+[![Code Scanning Status](https://github.com/pakkunbot/node-cli/workflows/CodeQL/badge.svg)](https://github.com/pakkunbot/node-cli/actions?query=workflow%3ACodeQL)
+[![Coverage Status](https://coveralls.io/repos/github/pakkunbot/node-cli/badge.svg?branch=main)](https://coveralls.io/r/pakkunbot/node-cli?branch=main)
+[![Security Status](https://snyk.io/test/github/pakkunbot/node-cli/badge.svg)](https://snyk.io/test/github/pakkunbot/node-cli)
+[![Published Version](https://img.shields.io/npm/v/nodecli.svg)](https://www.npmjs.com/package/nodecli)
 <!-- END:BADGES -->
 
 # NodeCLI
@@ -61,9 +66,15 @@ Some example configuration files are available on [examples](examples) folder.
 ## Colophon
 
 <!-- BEGIN:DEVELOPERS_GUIDE -->
-To be populated by generator-node node-cli-partials
+[Developer's Guide](https://cliffano.github.io/developers-guide-nodejs.html)
 <!-- END:DEVELOPERS_GUIDE -->
 
 <!-- BEGIN:BUILD_REPORTS -->
-To be populated by generator-node node-cli-partials
+Build reports:
+
+* [Code complexity report](https://pakkunbot.github.io/nodecli/complexity/plato/index.html)
+* [Unit tests report](https://pakkunbot.github.io/nodecli/test/mocha.txt)
+* [Test coverage report](https://pakkunbot.github.io/nodecli/coverage/c8/index.html)
+* [Integration tests report](https://pakkunbot.github.io/nodecli/test-integration/cmdt.txt)
+* [API Documentation](https://pakkunbot.github.io/nodecli/doc/jsdoc/index.html)
 <!-- END:BUILD_REPORTS -->

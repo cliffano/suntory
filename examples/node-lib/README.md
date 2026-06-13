@@ -1,9 +1,14 @@
 <!-- BEGIN:AVATAR -->
-To be populated by generator-node node-lib-partials
+![Avatar](avatar.jpg)
 <!-- END:AVATAR -->
 
 <!-- BEGIN:BADGES -->
-To be populated by generator-node node-lib-partials
+[![Build Status](https://github.com/pakkunbot/node-lib/workflows/CI/badge.svg)](https://github.com/pakkunbot/node-lib/actions?query=workflow%3ACI)
+[![Dependencies Status](https://img.shields.io/librariesio/release/npm/nodelib)](https://libraries.io/npm/nodelib)
+[![Code Scanning Status](https://github.com/pakkunbot/node-lib/workflows/CodeQL/badge.svg)](https://github.com/pakkunbot/node-lib/actions?query=workflow%3ACodeQL)
+[![Coverage Status](https://coveralls.io/repos/github/pakkunbot/node-lib/badge.svg?branch=main)](https://coveralls.io/r/pakkunbot/node-lib?branch=main)
+[![Security Status](https://snyk.io/test/github/pakkunbot/node-lib/badge.svg)](https://snyk.io/test/github/pakkunbot/node-lib)
+[![Published Version](https://img.shields.io/npm/v/nodelib.svg)](https://www.npmjs.com/package/nodelib)
 <!-- END:BADGES -->
 
 # NodeLib
@@ -47,9 +52,15 @@ Some example configuration files are available on [examples](examples) folder.
 ## Colophon
 
 <!-- BEGIN:DEVELOPERS_GUIDE -->
-To be populated by generator-node node-lib-partials
+[Developer's Guide](https:/cliffano.github.io/developers-guide-nodejs.html)
 <!-- END:DEVELOPERS_GUIDE -->
 
 <!-- BEGIN:BUILD_REPORTS -->
-To be populated by generator-node node-lib-partials
+Build reports:
+
+* [Code complexity report](https://pakkunbot.github.io/nodelib/complexity/plato/index.html)
+* [Unit tests report](https://pakkunbot.github.io/nodelib/test/mocha.txt)
+* [Test coverage report](https://pakkunbot.github.io/nodelib/coverage/c8/index.html)
+* [Integration tests report](https://pakkunbot.github.io/nodelib/test-integration/mocha.txt)
+* [API Documentation](https://pakkunbot.github.io/nodelib/doc/jsdoc/index.html)
 <!-- END:BUILD_REPORTS -->
