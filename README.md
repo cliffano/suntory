@@ -1,6 +1,10 @@
+<!-- BEGIN:AVATAR -->
 ![Avatar](avatar.jpg)
+<!-- END:AVATAR -->
 
+<!-- BEGIN:BADGES -->
 [![Build Status](https://github.com/cliffano/suntory/actions/workflows/ci-workflow.yaml/badge.svg)](https://github.com/cliffano/suntory/actions/workflows/ci-workflow.yaml)
+<!-- END:BADGES -->
 
 # Suntory
 
