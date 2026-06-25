@@ -1,4 +1,4 @@
 x-post-update-dotfiles:
-    echo "Post-update-dotfiles hook"
+	echo "Post-update-dotfiles hook"
 
 .PHONY: x-post-update-dotfiles
