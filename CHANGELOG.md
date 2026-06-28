@@ -6,6 +6,9 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## Unreleased
 
+### Added
+- Add x-post-deps-extra-apt run hook
+
 ## 1.3.0 - 2026-06-28
 ### Added
 - Add deps_extra hook to automatically provision extra packages

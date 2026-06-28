@@ -78,6 +78,7 @@ deps:
 deps-extra-apt:
 	apt-get update
 	apt-get install -y markdownlint
+	$(call run_hook,x-post-deps-extra-apt)
 
 deps-upgrade:
 	bob updep
