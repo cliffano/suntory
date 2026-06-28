@@ -72,10 +72,10 @@ Some example configuration files are available on [examples](examples) folder.
 <!-- BEGIN:BUILD_REPORTS -->
 Build reports:
 
-* [Code complexity report](https://pakkunbot.github.io/nodecli/complexity/plato/index.html)
-* [Unit tests report](https://pakkunbot.github.io/nodecli/test/mocha.txt)
-* [Test coverage report](https://pakkunbot.github.io/nodecli/coverage/c8/index.html)
-* [Integration tests report](https://pakkunbot.github.io/nodecli/test-integration/cmdt.txt)
-* [API Documentation](https://pakkunbot.github.io/nodecli/doc/jsdoc/index.html)
+* [Code complexity report](https://pakkunbot.github.io/node-cli/complexity/plato/index.html)
+* [Unit tests report](https://pakkunbot.github.io/node-cli/test/mocha.txt)
+* [Test coverage report](https://pakkunbot.github.io/node-cli/coverage/c8/index.html)
+* [Integration tests report](https://pakkunbot.github.io/node-cli/test-integration/cmdt.txt)
+* [API Documentation](https://pakkunbot.github.io/node-cli/doc/jsdoc/index.html)
 
 <!-- END:BUILD_REPORTS -->

@@ -1,4 +1,4 @@
-SUNTORY_VERSION = 1.0.0
+SUNTORY_VERSION = 1.2.0
 
 ################################################################
 # User configuration variables
@@ -22,6 +22,12 @@ $(info - Author = ${AUTHOR})
 
 export PATH := node_modules/bin:$(PATH)
 
+define run_hook
+	@if [ -f Makefile-extras ] && grep -q "^$(1):" Makefile-extras; then \
+		$(MAKE) -f Makefile-extras $(1); \
+	fi
+endef
+
 ################################################################
 # Base targets
 
@@ -39,7 +45,7 @@ clean:
 
 # Retrieve the Pyhon package dependencies
 deps:
-	npm install -g bob@5.0.1
+	npm install -g bob@5.2.1
 	bob dep
 
 deps-extra-apt:
@@ -97,6 +103,7 @@ update-dotfiles: stage
 	  cp .gitignore ../../../../.gitignore && \
 	  cp eslint.config.js ../../../../eslint.config.js && \
 	  cp .rtk.json ../../../../.rtk.json
+	$(call run_hook,x-post-update-dotfiles)
 
 # Update partial snippets using the generator-node
 update-partials: GENERATOR_COMPONENT = $(shell yq .generator.component suntory.yml)
