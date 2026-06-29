@@ -69,7 +69,7 @@ stage:
 clean:
 	bob clean
 
-# Retrieve the Pyhon package dependencies
+# Retrieve the Node.js package dependencies
 deps:
 	npm install -g bob@5.2.1
 	bob dep

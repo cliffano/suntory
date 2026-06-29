@@ -3,6 +3,16 @@ COMPONENTS := node-cli node-lib
 MAKEFILE_NAME := Makefile-$(ID)
 TARGET_VERSION_VARIABLE := TARGET_$(shell echo $(ID) | tr '[:lower:]-' '[:upper:]_')_VERSION
 
+define deps_extra
+	@if command -v apt-get > /dev/null 2>&1; then \
+		if [ "$$(id -u)" = "0" ]; then \
+			$(MAKE) deps-extra-apt; \
+		else \
+			sudo $(MAKE) deps-extra-apt; \
+		fi; \
+	fi
+endef
+
 all: ci
 ci: clean lint test
 
@@ -10,6 +20,9 @@ clean:
 	for component in $(COMPONENTS); do \
 	  (cd examples/$$component/ && make -f ../../src/$(MAKEFILE_NAME) clean && cd ../../); \
 	done
+
+deps:
+	$(call deps_extra)
 
 deps-extra-apt:
 	apt-get install -y markdownlint
@@ -39,4 +52,4 @@ release-patch:
 
 release: release-minor
 
-.PHONY: all ci clean deps-extra-apt lint test release-major release-minor release-patch release
+.PHONY: all ci clean deps deps-extra-apt lint test release-major release-minor release-patch release
