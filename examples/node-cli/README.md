@@ -66,7 +66,7 @@ Some example configuration files are available on [examples](examples) folder.
 ## Colophon
 
 <!-- BEGIN:DEVELOPERS_GUIDE -->
-[Developer's Guide](https://cliffano.github.io/developers-guide-nodejs.html)
+[Developer's Guide](https://pakkunbot.github.io/developers-guide-nodejs.html)
 <!-- END:DEVELOPERS_GUIDE -->
 
 <!-- BEGIN:BUILD_REPORTS -->
