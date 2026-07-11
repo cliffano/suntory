@@ -34,6 +34,7 @@ Create Suntory configuration file called `suntory.yml` with contains the followi
 | generator.inputs.project_desc | The project description | `A sample node CLI package` |
 | generator.inputs.author_name | The author's name | `Some Author` |
 | generator.inputs.author_email | The author's email address | `someauthor@example.com` |
+| generator.inputs.author_url | The author's web site URL | `https://example.com` |
 | generator.inputs.github_id | The GitHub user or organisation ID | `pakkunbot` |
 | generator.inputs.github_repo | The GitHub repository name | `suntoryexample` |
 
