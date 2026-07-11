@@ -4,7 +4,7 @@
 ################################################################
 
 # Suntory's version number
-SUNTORY_VERSION = 1.4.2-pre.0
+SUNTORY_VERSION = 1.5.0
 
 ################################################################
 # User configuration variables
