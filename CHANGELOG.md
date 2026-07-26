@@ -9,6 +9,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 ### Changed
 - Replace Copilot Instructions with AGENTS.md
 - Shift reports to stage/gh-pages/
+- Restructure Makefile-suntory following MAKEITSO standard
 
 ## 1.5.0 - 2026-07-11
 ### Added
