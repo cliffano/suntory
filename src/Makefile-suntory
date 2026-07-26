@@ -4,7 +4,7 @@
 ################################################################
 
 # Suntory info
-SUNTORY_VERSION = 1.5.1-pre.0
+SUNTORY_VERSION = 1.6.0
 
 UPDATE_MAKEFILE = suntory
 UPDATE_GENERATOR = node
