@@ -409,8 +409,6 @@ Applies to: `test/**/*.js`, `test-integration/**/*.js`
 - Slower execution
 - Broader coverage (fewer, larger tests)
 
-### Naming Conventions
-
 #### Test Files
 
 ```text
