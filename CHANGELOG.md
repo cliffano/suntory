@@ -6,6 +6,10 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## Unreleased
 
+### Changed
+- Replace Copilot Instructions with AGENTS.md
+- Shift reports to stage/gh-pages/
+
 ## 1.5.0 - 2026-07-11
 ### Added
 - Add x-post-lint and x-post-style run hooks

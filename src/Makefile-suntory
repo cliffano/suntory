@@ -152,7 +152,7 @@ update-to-version:
 # Update dotfiles using the generator-node
 $(eval $(call set_generator_vars,update-dotfiles,suntory))
 update-dotfiles: stage
-	$(call update_dotfiles_from_generator,node,.github/. .bob.json .gitignore eslint.config.js .rtk.json)
+	$(call update_dotfiles_from_generator,node,.github/. .bob.json .gitignore eslint.config.js .rtk.json AGENTS.md)
 	$(call run_hook,x-post-update-dotfiles)
 
 # Update partial snippets using the generator-node

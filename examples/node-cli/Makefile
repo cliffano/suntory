@@ -4,7 +4,7 @@
 ################################################################
 
 # Suntory's version number
-SUNTORY_VERSION = 1.3.0
+SUNTORY_VERSION = 1.5.0
 
 ################################################################
 # User configuration variables
@@ -18,25 +18,15 @@ PACKAGE_NAME=$(shell yq .package_name suntory.yml)
 # AUTHOR is the author of the node.js package
 AUTHOR ?= $(shell yq .author suntory.yml)
 
-define set_generator_vars
-$(1): GENERATOR_COMPONENT = $$(shell yq .generator.component suntory.yml)
-$(1): GENERATOR_INPUTS_PROJECT_ID = $$(shell yq .generator.inputs.project_id suntory.yml)
-$(1): GENERATOR_INPUTS_PROJECT_NAME = $$(shell yq .generator.inputs.project_name suntory.yml)
-$(1): GENERATOR_INPUTS_PROJECT_DESC = $$(shell yq .generator.inputs.project_desc suntory.yml)
-$(1): GENERATOR_INPUTS_AUTHOR_NAME = $$(shell yq .generator.inputs.author_name suntory.yml)
-$(1): GENERATOR_INPUTS_AUTHOR_EMAIL = $$(shell yq .generator.inputs.author_email suntory.yml)
-$(1): GENERATOR_INPUTS_AUTHOR_URL = $$(shell yq .generator.inputs.author_url suntory.yml)
-$(1): GENERATOR_INPUTS_GITHUB_ID = $$(shell yq .generator.inputs.github_id suntory.yml)
-$(1): GENERATOR_INPUTS_GITHUB_REPO = $$(shell yq .generator.inputs.github_repo suntory.yml)
-$(1): GENERATOR_INPUTS_GITHUB_TOKEN_PREFIX = $$(shell yq .generator.inputs.github_token_prefix suntory.yml)
-endef
-
 $(info ################################################################)
 $(info Building node.js package using Suntory with user configurations...)
 $(info - Package name = ${PACKAGE_NAME})
 $(info - Author = ${AUTHOR})
 
 export PATH := node_modules/bin:$(PATH)
+
+################################################################
+# MAKE IT SO - Utility functions
 
 define run_hook
 	@if [ -f Makefile-extras ] && grep -q "^$(1):" Makefile-extras; then \
@@ -54,12 +44,73 @@ define deps_extra
 	fi
 endef
 
+define set_generator_vars
+$(1): GENERATOR_COMPONENT = $$(shell yq .generator.component $(2).yml)
+$(1): GENERATOR_INPUTS_PROJECT_ID = $$(shell yq .generator.inputs.project_id $(2).yml)
+$(1): GENERATOR_INPUTS_PROJECT_NAME = $$(shell yq .generator.inputs.project_name $(2).yml)
+$(1): GENERATOR_INPUTS_PROJECT_DESC = $$(shell yq .generator.inputs.project_desc $(2).yml)
+$(1): GENERATOR_INPUTS_AUTHOR_NAME = $$(shell yq .generator.inputs.author_name $(2).yml)
+$(1): GENERATOR_INPUTS_AUTHOR_EMAIL = $$(shell yq .generator.inputs.author_email $(2).yml)
+$(1): GENERATOR_INPUTS_AUTHOR_URL = $$(shell yq .generator.inputs.author_url $(2).yml)
+$(1): GENERATOR_INPUTS_GITHUB_ID = $$(shell yq .generator.inputs.github_id $(2).yml)
+$(1): GENERATOR_INPUTS_GITHUB_REPO = $$(shell yq .generator.inputs.github_repo $(2).yml)
+$(1): GENERATOR_INPUTS_GITHUB_TOKEN_PREFIX = $$(shell yq .generator.inputs.github_token_prefix $(2).yml)
+endef
+
+define update_dotfiles_from_generator
+	cd stage/ && \
+	  rm -rf generator-$(1)/ && \
+	  git clone https://github.com/cliffano/generator-$(1) && \
+	  cd generator-$(1) && \
+	  make deps && \
+	  node_modules/.bin/plop $(GENERATOR_COMPONENT) -- \
+	    --project_id "$(GENERATOR_INPUTS_PROJECT_ID)" \
+		--project_name "$(GENERATOR_INPUTS_PROJECT_NAME)" \
+		--project_desc "$(GENERATOR_INPUTS_PROJECT_DESC)" \
+		--author_name "$(GENERATOR_INPUTS_AUTHOR_NAME)" \
+		--author_email "$(GENERATOR_INPUTS_AUTHOR_EMAIL)" \
+		--author_url "$(GENERATOR_INPUTS_AUTHOR_URL)" \
+		--github_id "$(GENERATOR_INPUTS_GITHUB_ID)" \
+		--github_repo "$(GENERATOR_INPUTS_GITHUB_REPO)" \
+		--github_token_prefix "$(GENERATOR_INPUTS_GITHUB_TOKEN_PREFIX)"
+	cd stage/generator-$(1)/stage/$(GENERATOR_COMPONENT) && \
+	  for dotfile in $(2); do \
+		cp -R "$$dotfile" ../../../../"$$dotfile"; \
+	  done
+endef
+
+define update_partials_from_generator
+	cd stage/ && \
+	  rm -rf generator-$(1)/ && \
+	  git clone https://github.com/cliffano/generator-$(1) && \
+	  cd generator-$(1) && \
+	  make deps && \
+	  node_modules/.bin/plop $(GENERATOR_COMPONENT)-partials -- \
+	    --project_id "$(GENERATOR_INPUTS_PROJECT_ID)" \
+		--project_name "$(GENERATOR_INPUTS_PROJECT_NAME)" \
+		--project_desc "$(GENERATOR_INPUTS_PROJECT_DESC)" \
+		--author_name "$(GENERATOR_INPUTS_AUTHOR_NAME)" \
+		--author_email "$(GENERATOR_INPUTS_AUTHOR_EMAIL)" \
+		--author_url "$(GENERATOR_INPUTS_AUTHOR_URL)" \
+		--github_id "$(GENERATOR_INPUTS_GITHUB_ID)" \
+		--github_repo "$(GENERATOR_INPUTS_GITHUB_REPO)" \
+		--github_token_prefix "$(GENERATOR_INPUTS_GITHUB_TOKEN_PREFIX)"
+	for block in $(2); do \
+	  partial_file=$$(printf "%s" "$$block" | tr "A-Z" "a-z"); \
+	  ex -s \
+	    -c "/<!-- BEGIN:$$block -->/+1,/<!-- END:$$block -->/-1d" \
+	    -c "/<!-- BEGIN:$$block -->/r stage/generator-$(1)/stage/$(GENERATOR_COMPONENT)-partials/$$partial_file.txt" \
+	    -c 'wq' \
+	    README.md; \
+	done
+endef
+
 ################################################################
 # Base targets
 
 # CI target to be executed by CI/CD tool
 all: ci
-ci: clean deps style lint test coverage complexity doc package reinstall test-integration
+ci: clean style lint test coverage complexity doc package reinstall test-integration
 
 # Ensure stage directory exists
 stage:
@@ -69,7 +120,7 @@ stage:
 clean:
 	bob clean
 
-# Retrieve the Pyhon package dependencies
+# Retrieve the Node.js package dependencies
 deps:
 	npm install -g bob@5.3.0
 	bob dep
@@ -78,6 +129,7 @@ deps:
 deps-extra-apt:
 	apt-get update
 	apt-get install -y markdownlint
+	$(call run_hook,x-post-deps-extra-apt)
 
 deps-upgrade:
 	bob updep
@@ -98,63 +150,22 @@ update-to-version:
 	curl https://raw.githubusercontent.com/cliffano/suntory/$(TARGET_SUNTORY_VERSION)/src/Makefile-suntory -o Makefile
 
 # Update dotfiles using the generator-node
-$(eval $(call set_generator_vars,update-dotfiles))
+$(eval $(call set_generator_vars,update-dotfiles,suntory))
 update-dotfiles: stage
-	cd stage/ && \
-	  rm -rf generator-node/ && \
-	  git clone https://github.com/cliffano/generator-node && \
-	  cd generator-node && \
-	  make deps && \
-	  node_modules/.bin/plop $(GENERATOR_COMPONENT) -- \
-	    --project_id "$(GENERATOR_INPUTS_PROJECT_ID)" \
-		--project_name "$(GENERATOR_INPUTS_PROJECT_NAME)" \
-		--project_desc "$(GENERATOR_INPUTS_PROJECT_DESC)" \
-		--author_name "$(GENERATOR_INPUTS_AUTHOR_NAME)" \
-		--author_email "$(GENERATOR_INPUTS_AUTHOR_EMAIL)" \
-		--author_url "$(GENERATOR_INPUTS_AUTHOR_URL)" \
-		--github_id "$(GENERATOR_INPUTS_GITHUB_ID)" \
-		--github_repo "$(GENERATOR_INPUTS_GITHUB_REPO)" \
-		--github_token_prefix "$(GENERATOR_INPUTS_GITHUB_TOKEN_PREFIX)"
-	cd stage/generator-node/stage/$(GENERATOR_COMPONENT) && \
-	  cp -R .github/. ../../../../.github/ && \
-	  cp .bob.json ../../../../.bob.json && \
-	  cp .gitignore ../../../../.gitignore && \
-	  cp eslint.config.js ../../../../eslint.config.js && \
-	  cp .rtk.json ../../../../.rtk.json
+	$(call update_dotfiles_from_generator,node,.github/. .bob.json .gitignore eslint.config.js .rtk.json)
 	$(call run_hook,x-post-update-dotfiles)
 
 # Update partial snippets using the generator-node
-$(eval $(call set_generator_vars,update-partials))
+$(eval $(call set_generator_vars,update-partials,suntory))
 update-partials: stage
-	cd stage/ && \
-	  rm -rf generator-node/ && \
-	  git clone https://github.com/cliffano/generator-node && \
-	  cd generator-node && \
-	  make deps && \
-	  node_modules/.bin/plop $(GENERATOR_COMPONENT)-partials -- \
-	    --project_id "$(GENERATOR_INPUTS_PROJECT_ID)" \
-		--project_name "$(GENERATOR_INPUTS_PROJECT_NAME)" \
-		--project_desc "$(GENERATOR_INPUTS_PROJECT_DESC)" \
-		--author_name "$(GENERATOR_INPUTS_AUTHOR_NAME)" \
-		--author_email "$(GENERATOR_INPUTS_AUTHOR_EMAIL)" \
-		--author_url "$(GENERATOR_INPUTS_AUTHOR_URL)" \
-		--github_id "$(GENERATOR_INPUTS_GITHUB_ID)" \
-		--github_repo "$(GENERATOR_INPUTS_GITHUB_REPO)" \
-		--github_token_prefix "$(GENERATOR_INPUTS_GITHUB_TOKEN_PREFIX)"
-	for block in AVATAR BADGES BUILD_REPORTS DEVELOPERS_GUIDE; do \
-	  partial_file=$$(printf "%s" "$$block" | tr "A-Z" "a-z"); \
-	  ex -s \
-	    -c "/<!-- BEGIN:$$block -->/+1,/<!-- END:$$block -->/-1d" \
-	    -c "/<!-- BEGIN:$$block -->/r stage/generator-node/stage/$(GENERATOR_COMPONENT)-partials/$$partial_file.txt" \
-	    -c 'wq' \
-	    README.md; \
-	done
+	$(call update_partials_from_generator,node,AVATAR BADGES BUILD_REPORTS DEVELOPERS_GUIDE)
 
 ################################################################
 # Formatting targets
 
 style:
 	bob style
+	$(call run_hook,x-post-style)
 
 ################################################################
 # Testing targets
@@ -162,6 +173,7 @@ style:
 lint: stage
 	bob lint
 	mdl -r ~MD013,~MD029 $(shell find . -path ./stage -prune -o -path ./node_modules -prune -o -name "CHANGELOG.md" -prune -o -name "*.md" -print)
+	$(call run_hook,x-post-lint)
 
 complexity: stage
 	bob complexity
