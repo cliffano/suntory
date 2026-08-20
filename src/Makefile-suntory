@@ -49,9 +49,9 @@ clean:
 
 # Retrieve the Node.js package dependencies
 deps:
+	$(call deps_extra)
 	npm install -g bob@5.3.0
 	bob dep
-	$(call deps_extra)
 
 deps-extra-apt:
 	apt-get update

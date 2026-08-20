@@ -6,6 +6,9 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## Unreleased
 
+### Changed
+- Move deps_extra prior to the deps steps since they're mostly pre-requisites
+
 ## 1.6.0 - 2026-07-26
 ### Changed
 - Replace Copilot Instructions with AGENTS.md
