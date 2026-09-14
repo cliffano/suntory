@@ -6,6 +6,9 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## Unreleased
 
+### Changed
+- Parameterise UPDATE_GH_ID
+
 ## 1.7.0 - 2026-08-20
 ### Changed
 - Move deps_extra prior to the deps steps since they're mostly pre-requisites
