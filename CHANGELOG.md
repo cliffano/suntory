@@ -10,6 +10,9 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - Upgrade Ubuntu to 26.04
 - Upgrade cliffano/studio to 4.0.0
 
+### Fixed
+- Fix uninstall target failing to remove global package in node 26
+
 ## 1.9.0 - 2026-09-14
 
 ## 1.8.0 - 2026-09-14
