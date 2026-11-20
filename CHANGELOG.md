@@ -8,6 +8,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ### Changed
 - Restrict GitHub Actions workflows token permissions to contents read
+- Switch release workflows runner to ubuntu-slim
 
 ## 1.10.0 - 2026-10-11
 ### Changed
