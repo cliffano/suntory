@@ -6,6 +6,9 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## Unreleased
 
+### Added
+- Add CodeQL code scanning workflow and Code Scanning Status badge
+
 ### Changed
 - Restrict GitHub Actions workflows token permissions to contents read
 - Switch release workflows runner to ubuntu-slim
