@@ -1,6 +1,8 @@
 # AGENTS.md
 
-This repository contains a Node.js project following a **unified standard** for tooling, build automation, and coding conventions. All projects share the same tooling stack and conventions to ensure consistency and maintainability. The key components of the standard include:
+This repository contains a Node.js project following a unified standard for tooling, build automation, and coding conventions. All projects share the same tooling stack and conventions to ensure consistency and maintainability.
+
+The key components of the standard include:
 
 - Build automation (Suntory)
 - Project definition and dependency management (npm)
@@ -190,9 +192,9 @@ class MyService {
   /**
    * Constructor for initialising MyService.
    *
-   * @param {Object} opts: optional
-   * - configFile: path to the configuration file
-   * - timeout: request timeout in milliseconds
+   * @param {Object} [opts] - optional settings
+   * @param {String} [opts.configFile] - path to the configuration file
+   * @param {Number} [opts.timeout] - request timeout in milliseconds
    */
   constructor(opts) {
     this.opts = opts;
@@ -201,8 +203,8 @@ class MyService {
   /**
    * Execute the main operation.
    *
-   * @param {Array} items: list of items to process
-   * @param {Function} cb: standard cb(err, result) callback
+   * @param {Array} items - list of items to process
+   * @param {Function} cb - standard cb(err, result) callback
    */
   execute(items, cb) {
     // implementation
@@ -358,9 +360,9 @@ Add JSDoc comments to all public classes and methods:
 /**
  * Process a list of items in batches.
  *
- * @param {Array} items: list of items to process
- * @param {Number} batchSize: number of items per batch
- * @param {Function} cb: standard cb(err, result) callback
+ * @param {Array} items - list of items to process
+ * @param {Number} batchSize - number of items per batch
+ * @param {Function} cb - standard cb(err, result) callback
  */
 function processBatch(items, batchSize, cb) {
   ...
@@ -369,9 +371,17 @@ function processBatch(items, batchSize, cb) {
 
 **Guidelines**:
 
-- Document all parameters with `@param {Type} name: description`
+- Document all parameters with `@param {Type} name - description`; JSDoc
+  takes the first word as the parameter name, so a `name:` colon would become
+  part of the name
+- Document object properties as nested params, e.g.
+  `@param {Boolean} [opts.dryRun] - description`, using `[name]` for optional
+  params and `[name=default]` for defaults
 - Document return value with `@return {Type} description` for synchronous functions
-- Use `@param {Function} cb: standard cb(err, result) callback` for async functions
+- Use `@param {Function} cb - standard cb(err, result) callback` for async functions
+- Start each file with a `@module` tag so that JSDoc groups its functions
+  under the module instead of listing them as globals
+- Mark internal helpers (`_` prefixed) with `@private`
 
 ## Testing
 
